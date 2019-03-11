@@ -3,7 +3,7 @@ define('HOST', 'localhost/cuestionario');
 define('SUCURSAL_ID','1');
 define('SUCURSAL_ICONO','png');
 define('SUCURSAL_LOGO','png');
-define('SUCURSAL_PAISID','14');
+define('SUCURSAL_PAISID','39');
 define('SUCURSAL_MONEDA','1');
 define('SUCURSAL_ISO','EC');
 define('PUERTO', 'http');
@@ -34,7 +34,7 @@ define('MAIL_SUGERENCIAS','info@micamello.com.ec');
 define('PATH_COMPROBANTE',FRONTEND_RUTA.'imagenes/usuarios/comprobante/');
 define('STATUS_CARRERA', array('1'=>'Estudiante', '2'=>'Graduado'));
 define('POSTULACIONES', array('2'=>'Manual', '1'=>'Autom&aacute;tico'));
-define('GENERO', array('M'=>'Masculino', 'F'=>'Femenino', 'P'=>'Prefiero no decirlo'));
+define('GENERO', array('M'=>'MASCULINO', 'F'=>'FEMENINO', 'P'=>'PREFIERO NO DECIRLO'));
 define('VALOR_GENERO', array('M'=>'1', 'F'=>'2', 'P'=>'3'));
 define('PRIORIDAD', array('1'=>'Plan Gratuito', '2'=>'Plan Pagado'));
 define('ESTATUS_OFERTA', array('1'=>'Contratado', '2'=>'No contratado', '3'=>'En proceso'));
@@ -46,7 +46,7 @@ define('ANOSEXP', array('1'=>'Sin Experiencia', '2'=>'1 - 3 a&ntilde;os', '3'=>'
 define('REGISTRO_PAGINA',10);
 define('RUTA_PAYPAL','https://www.sandbox.paypal.com/cgi-bin/webscr');
 define('REQUISITO', array('0'=>'No', '1'=>'S&iacute;'));
-define('ESTADO_CIVIL',array('1'=>'Soltero(a)', '2'=>'Casado(a)', '3'=>'En union', '4'=>'Divorciado(a)','5'=>'Viudo(a)'));
+define('ESTADO_CIVIL',array('1'=>'SOLTERO(A)', '2'=>'UNION LIBRE', '3'=>'CASADO(A)', '4'=>'SEPARADO(A)','5'=>'DIVORCIADO(A)','6'=>'VIUDO(A)','7'=>'OTRO'));
 define('CRON_RUTA',FRONTEND_RUTA.'cron/');
 define('DIAS_AUTOPOSTULACION','3');
 define('AUTOPOSTULACION_MIN','5');
@@ -56,7 +56,11 @@ define('EDAD', array('1'=>'Entre 18 y 20 a&ntilde;os', '2'=>'Entre 20 y 30 a&nti
 define('OPCIONES',array('a','b','c','d','e'));
 
 // método de selección
-define('METODO_SELECCION', array('1'=>'Doble click', '2'=>'Escribir número'));
+define('METODO_SELECCION', array('1'=>array(
+										'Esta opción le permitirá dar doble clip para seleccionar la respuesta, tome en cuenta que el 1  es la opción  con la que más se siente identificado y 5 la opción con la que menos se siente identificado.'
+									), '2'=>array(
+										'Esta opción le permitirá seleccionar y arrastrar la respuesta; tome en cuenta que la opción 1 es la opción con la que más se siente identificado y la opción 5 la opción con la que menos se siente identificado.', ''
+									)));
 
 // facebook
 define('FB_ID_CLIENTE', '2148107835439054');

@@ -1,58 +1,107 @@
 // DOBLE CLICK
 
 if($('.contenedor_p').length){
-	$('.contenedor_p').find('.text_origen').on('dblclick', function(){
+	var isTouched = false;
+	$('.contenedor_p').find('.text_origen').dblclick( function(){
 		var destino = $(this).parents('.contenedor_p').find('.text_destino');
-		for (var i = 0; i < destino.length; i++) {
-			if(!$(destino[i]).find('input[name="opcion[]"]').length){
-				var contenido_origen = $(this).html();
-				$(destino[i]).append(contenido_origen);
-				var icon = $('<i></i>');
-				icon.attr('class', 'fa fa-times delete_icon');
-				icon.attr('onclick', 'eliminarOpcion(this)');
-				$(destino[i]).append(icon);
-				$(this).html('');
-				if((i+2) == destino.length){
-					var ultimo_elemento = $(this).parents('.contenedor_p').find('.text_origen');
-					for (var j = 0; j < ultimo_elemento.length; j++) {
-						if($(ultimo_elemento[j]).find('input').length){
-							var contenido = $(ultimo_elemento[j]).html();
-							$(destino[i+1]).append(contenido);
-							var icon = $('<i></i>');
-							icon.attr('class', 'fa fa-times delete_icon');
-							icon.attr('onclick', 'eliminarOpcion(this)');
-							$(destino[i+1]).append(icon);
-							$(ultimo_elemento[j]).html('');
+		var contenido_val = $(this).text();
+		if(contenido_val != ""){
+			for (var i = 0; i < destino.length; i++) {
+				if(!$(destino[i]).find('input[name="opcion[]"]').length){
+					var contenido_origen = $(this).html();
+					$(destino[i]).append(contenido_origen);
+					var icon = $('<i></i>');
+					icon.attr('class', 'fa fa-times delete_icon');
+					icon.attr('onclick', 'eliminarOpcion(this)');
+					$(destino[i]).append(icon);
+					$(this).html('');
+					if((i+2) == destino.length){
+						var ultimo_elemento = $(this).parents('.contenedor_p').find('.text_origen');
+						for (var j = 0; j < ultimo_elemento.length; j++) {
+							if($(ultimo_elemento[j]).find('input').length){
+								var contenido = $(ultimo_elemento[j]).html();
+								$(destino[i+1]).append(contenido);
+								var icon = $('<i></i>');
+								icon.attr('class', 'fa fa-times delete_icon');
+								icon.attr('onclick', 'eliminarOpcion(this)');
+								$(destino[i+1]).append(icon);
+								$(ultimo_elemento[j]).html('');
+							}
 						}
 					}
+					break;
 				}
-				break;
 			}
 		}
 		crearArrayInputs();
 	});
+
+	// $('.contenedor_p').find('.text_origen').on('doubletap', function(event){
+	// 	event.preventDefault();
+	// 	event.stopPropagation(); 
+	// 	var destino = $(this).parents('.contenedor_p').find('.text_destino');
+	// 	var contenido_val = $(this).text();
+	// 	if(contenido_val != ""){
+	// 		for (var i = 0; i < destino.length; i++) {
+	// 			if(!$(destino[i]).find('input[name="opcion[]"]').length){
+	// 				var contenido_origen = $(this).html();
+	// 				$(destino[i]).append(contenido_origen);
+	// 				var icon = $('<i></i>');
+	// 				icon.attr('class', 'fa fa-times delete_icon');
+	// 				icon.attr('onclick', 'eliminarOpcion(this)');
+	// 				$(destino[i]).append(icon);
+	// 				$(this).html('');
+	// 				if((i+2) == destino.length){
+	// 					var ultimo_elemento = $(this).parents('.contenedor_p').find('.text_origen');
+	// 					for (var j = 0; j < ultimo_elemento.length; j++) {
+	// 						if($(ultimo_elemento[j]).find('input').length){
+	// 							var contenido = $(ultimo_elemento[j]).html();
+	// 							$(destino[i+1]).append(contenido);
+	// 							var icon = $('<i></i>');
+	// 							icon.attr('class', 'fa fa-times delete_icon');
+	// 							icon.attr('onclick', 'eliminarOpcion(this)');
+	// 							$(destino[i+1]).append(icon);
+	// 							$(ultimo_elemento[j]).html('');
+	// 						}
+	// 					}
+	// 				}
+	// 				break;
+	// 			}
+	// 		}
+	// 	}
+	// 	crearArrayInputs();
+	// });
+
+}
+
+function preventZoom(e) {
+  var t2 = e.timeStamp;
+  var t1 = e.currentTarget.dataset.lastTouch || t2;
+  var dt = t2 - t1;
+  var fingers = e.touches.length;
+  e.currentTarget.dataset.lastTouch = t2;
+
+  if (!dt || dt > 500 || fingers > 1) return; // not double-tap
+
+  e.preventDefault();
+  e.target.click();
 }
 
 function eliminarOpcion(obj){
-	var elementos_des = $(obj).parents('.contenedor_p').find('.text_destino');
-	for (var i =  0; i < elementos_des.length; i++) {
-		if($(elementos_des[i]).find('input[name="opcion[]"]').length){
-			var elementos_ori = $(obj).parents('.contenedor_p').find('.text_origen');
-			for (var j =  0; j < elementos_ori.length; j++) {
-				if(!$(elementos_ori[j]).find('input[name="opcion[]"]').length){
-					var label = $(elementos_des[i]).find('label');
-					var input_opcion = $(elementos_des[i]).find('input[name="opcion[]"]');
+	var elementos_des = $(obj).parent('.text_destino');
+	var elementos_ori = $(obj).parents('.contenedor_p').find('.text_origen');
+		for (var j =  0; j < elementos_ori.length; j++) {
+			if(!$(elementos_ori[j]).find('input[name="opcion[]"]').length){
+				var label = $(elementos_des).find('label');
+				var input_opcion = $(elementos_des).find('input[name="opcion[]"]');
+				if($(elementos_ori[j])[0].id == ('nido_'+$(input_opcion).val())){
 					$(elementos_ori[j]).append(label);
 					$(elementos_ori[j]).append(input_opcion);
 					break;
 				}
 			}
 		}
-	}
-	var delete_icon = $(obj).parents('.contenedor_p').find('.delete_icon');
-	for (var i = delete_icon.length - 1; i >= 0; i--) {
-		$(delete_icon[i])[0].outerHTML = "";
-	}
+	$(obj)[0].outerHTML = "";
 	crearArrayInputs();
 }
 
@@ -107,10 +156,10 @@ if($('#forma_1').length){
 		for (var i = 0; i < contenedores.length; i++) {
 			var orden = $(contenedores[i]).find('.text_destino').find('input[name="orden[]"]');
 			var opciones = $(contenedores[i]).find('.text_destino').find('input[name="opcion[]"]');
-			var div_error = $(contenedores[i]).parent().prev().find('.error_msg');
+			var div_error = $(contenedores[i]).parent().prev().prev();
 				if(orden.length != opciones.length){
 					// console.log(div_error);
-					mostrarerror(div_error, "Por favor, escriba el orden para cada opción");
+					mostrarerror(div_error, "Por favor seleccione el orden correcto para cada opción");
 					event.preventDefault();
 				}
 				else{
@@ -126,7 +175,7 @@ if($('#forma_1').length){
 
 // ESCRIBIR ORDEN
 if($('#forma_2').length){
-	$('#forma_2').on('submit', function(event){
+	$('#forma_2').submit(function(event){
 		validarArrayContenedor();
 		validarValor();
 		validarRepetidos();
@@ -157,7 +206,7 @@ function validarArrayContenedor(){
 				}
 			}
 		if(flag == 1){
-			mostrarerror(div_error, "Por favor, escriba el orden para cada opción");
+			mostrarerror(div_error, "Por favor seleccione el orden correcto para cada opción");
 		}
 		else{
 			ocultarError(div_error);
@@ -166,7 +215,7 @@ function validarArrayContenedor(){
 	return condicion;
 }
 
-$('.orden_div').find('input').on('change', function(event){
+$('.orden_div').find('input').change(function(event){
 	var long_opciones = $(this).parents('.contenedor_p_2').find('.opcion_div').length;
 	if($(this).val() != ""){
 		if($.isNumeric($(this).val()) != false){
@@ -262,7 +311,10 @@ function checkErrors(){
 
 
 
-function mostrarerror(obj, mensaje_text = 'Por favor arrastre todas las opciones del lado izquierdo en los cuadros que se muestran en el lado derecho de acuerdo a su prioridad.'){
+function mostrarerror(obj, mensaje_text){
+	if (mensaje_text == ''){
+		mensaje_text = 'Por favor arrastre todas las opciones del lado izquierdo en los cuadros que se muestran en el lado derecho de acuerdo a su prioridad.';
+	}
 	var mensaje = ('<div class="alert alert-danger text-center" role="alert"><h6><b>'+mensaje_text+'</b></h6></div>');
 	$(obj).html(mensaje);
 }
@@ -299,4 +351,130 @@ function eliminarMensajeError(obj, mensaje){
 	  $(obj).siblings('div').html(mensaje);
 	  $(obj).siblings('div').removeClass('error_field');
 	}
+}
+
+
+if($('.drag_origen').length){
+	$('.drag_origen').draggable({
+		opacity: 0.60,
+    	zIndex: 100,
+    	revert: 'invalid',
+	    stop: function(){
+	        $(this).draggable('option','revert','invalid');
+	    }
+	});
+}
+
+if($('.contenedor_drag').length){
+	$('.contenedor_drag').droppable({
+            drop: function(event, ui) {
+            	var droppable = $(this);
+            	var draggable = ui.draggable;
+            	makeDrop(droppable, draggable);
+            }
+        });
+
+}
+
+if($('.drop_destino').length){
+	$('.drop_destino').droppable({
+            drop: function(event, ui) {
+            	var droppable = $(this);
+            	var draggable = ui.draggable;
+            	makeDrop(droppable, draggable);
+            }
+       });
+}
+
+function makeDrop(drop, drag){
+	var padre_drop = $(drop).parents(':eq(2)').attr('class');
+	var padre_drag = $(drag).parents(':eq(3)').attr('class');
+	var padre_directo_drag = $(drag).parent();
+	console.log($(drag).parent()[0]);
+	var content = $(drop).find('label');
+	if(content.length == 0){
+		if(padre_drop == padre_drag){
+			drag.css({top: '0px', left: '0px'});
+			drag.appendTo(drop);
+			// padre_directo_drag.addClass('espacio');
+			crearInputsArastre();
+			toastr.remove();
+		}
+		else{
+			toastr.remove();
+			toastr.options.positionClass = "toast-top-center";
+			toastr.warning('Ubique la opción en la pregunta correspondiente');
+			drag.css({top: '0px', left: '0px'});
+		}
+	}
+	else{
+		drag.css({top: '0px', left: '0px'});
+	}
+}
+
+// validar metodo arrastre
+if($('#forma_2').length){
+	$('#forma_2').on('submit', function(event){
+		opinRightSide();
+		if(validarErrores() >0){
+			event.preventDefault();
+		}	
+	})
+}
+
+function opinRightSide(){
+	var card = $('.card-body');
+	var destino_input;
+	var destino;
+	for (var i = 0; i < card.length; i++) {
+		var error = 0;
+		error = $(card[i]).prev().prev();
+		destino = $(card[i]).find('.drop_destino');
+		destino_input = $(card[i]).find('.drop_destino').find('input[name="opcion[]"]');
+		if(destino.length != destino_input.length){
+			error.html('<div class="alert alert-danger" role="alert">Una o mas opciones de esta pregunta no estan ordenadas. (Ordenadas '+destino_input.length+' de '+destino.length+')</div>');
+
+		}
+		else{
+			error.html('');
+		}
+	}
+}
+
+function crearInputsArastre(){
+	var card = $('.card-body');
+	var orden = [];
+	var opcion = [];
+	var contenedor_respuestas = $('#respuestas');
+	contenedor_respuestas.html('');
+	var input_orden;
+	for (var i = 0; i < card.length; i++) {
+		var drop_destino = $(card[i]).find('.drop_destino');
+		var input_opcion = drop_destino.find('input[name="opcion[]"]');
+		if($(input_opcion).length > 0){
+			for (var j = 0; j < input_opcion.length; j++) {
+				if($(input_opcion[j]).length){
+						input_orden = $(input_opcion[j]).parent().prev();
+						opcion.push($(input_opcion[j]).val());
+						orden.push($(input_orden).val());
+				}
+			}
+		}
+	}
+	for (var i = 0; i < opcion.length; i++) {
+		var input_orden = $('<input></input>');
+		var input_opcion = $('<input></input>');
+		input_orden.attr('name', 'array_orden[]');
+		input_opcion.attr('name', 'array_opcion[]');
+		input_orden.attr('value', orden[i]);
+		input_opcion.attr('value', opcion[i]);
+		$(contenedor_respuestas).append(input_orden);
+		$(contenedor_respuestas).append(input_opcion);
+		$(contenedor_respuestas).append("<br>");
+	}
+}
+
+function validarErrores(){
+	var alerts = $('.alert-danger');
+	return alerts.length;
 }
