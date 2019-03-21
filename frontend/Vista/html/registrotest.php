@@ -49,10 +49,8 @@ if($navegador == 'Safari'){
   <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/all.css">
   <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/minisitio.css">
-  <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/DateTimePicker.css">
-  <!-- <link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" /> -->
-  <!-- <script type="text/javascript" src="jquery-1.11.0.min.js"></script> -->
-  <!-- <script type="text/javascript" src="../src/DateTimePicker.js"></script> -->
+  <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/DateTimePicker.css">  
+  
 </head>
 <body class="window_class">
   <?php if($navegador == 'MSIE'){ ?>
@@ -396,13 +394,14 @@ if($navegador == 'Safari'){
 if($navegador == 'MSIE'){
   echo '<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/jquery.min-1.3.1.js"></script>
   <script type="text/javascript" src="'.PUERTO."://".HOST.'/js/minisitio.js"></script>';
-}else{
-  echo '<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/jquery-3.0.0.js"></script>
+}else{  
+  echo '<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/jquery-3.0.0.js"></script>  
   <script type="text/javascript" src="'.PUERTO."://".HOST.'/js/popper.min.js"></script>
   <script type="text/javascript" src="'.PUERTO."://".HOST.'/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="'.PUERTO."://".HOST.'/js/bootstrap-select.min.js"></script>
-  <script type="text/javascript" src="'.PUERTO."://".HOST.'/js/DateTimePicker.js"></script>
-  <script type="text/javascript" src="'.PUERTO."://".HOST.'/js/minisitio_nomovil.js"></script>';
+  <script type="text/javascript" src="'.PUERTO."://".HOST.'/js/minisitio_nomovil.js"></script>
+  <script type="text/javascript" src="'.PUERTO."://".HOST.'/js/DateTimePicker.js"></script>  
+  ';
 }
 ?>
 

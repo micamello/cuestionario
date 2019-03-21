@@ -38,9 +38,14 @@ $('#provincia').change(function(){
 });
 
 $('#documentacion').change(function(){
-    borrarDatos(2);
+  borrarDatos(2);
 	emptyField(this);
 	$('#dni').removeAttr('disabled');
+	if($('#documentacion').val() == 3){
+  	$('#nombre_dni').html('Pasaporte');  	
+  }else if($('#documentacion').val() == 2){
+ 	  $('#nombre_dni').html('C&eacute;dula'); 	  
+  }
 	if ($.trim($('#dni').val()) != ''){
 	  validarDocumento($('#dni').val(),$('#documentacion').val(),$('#dni'));
 	  existeDni($('#dni').val());
@@ -424,12 +429,6 @@ function validarDocumento(numero,tipo,obj){
     crearMensajeError(obj,"El campo no puede ser vacío");
     //return error = 1;
   } 
-  
-  if(tipo == 3){
-  	$('#nombre_dni').html('Pasaporte');
-  }else if(tipo == 2){
- 	$('#nombre_dni').html('C&eacute;dula');
-  }
 
   var expregLN = /[a-zA-Z0-9]{7,}$/i;
   if ((!expregLN.test(numero) && tipo == 3) ){

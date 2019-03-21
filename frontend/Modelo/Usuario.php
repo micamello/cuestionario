@@ -251,7 +251,9 @@ public static function existeUsername($username){
   }
 
   public static function validarFechaNac($fecha){
-
+    if (!Utils::valida_fecha($fecha)){
+      return false;
+    }
     //Creamos objeto fecha desde los valores recibidos
     $nacio = DateTime::createFromFormat('Y-m-d', $fecha);
 
@@ -980,6 +982,8 @@ WHERE
 
     $existe = self::existeDni($data['dni']);      
     if($tipo == 1 && empty($existe)){      
+      $data_usuario["visibilidad"] = VISIBILIDAD;
+      $data_usuario["metodo_ordenamiento"] = 1;
       $result = $GLOBALS['db']->insert('mfo_usuariom2', $data_usuario);      
     }else if($tipo == 2 || is_array($existe)){
       if (is_array($existe)){

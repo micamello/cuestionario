@@ -113,7 +113,7 @@ class Controlador_Cuestionariom2 extends Controlador_Base{
     }
     else{
       $data = Modelo_Opcion::obtieneOpciones($faceta);
-      Vista::render($vista,array('data'=>$data, 'tiempo'=>date("Y-m-d H:i:s")), '', '');  
+      Vista::render($vista,array('data'=>$data, 'tiempo'=>date("Y-m-d H:i:s"), 'faceta'=>$rs), '', '');  
     }
     //funcion que obtiene las opciones de una pregunta especifica    
     

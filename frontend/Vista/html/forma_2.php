@@ -74,49 +74,70 @@ $navegador = getBrowser($user_agent);
 						if($navegador == "Safari"){
 							$columna = "offset-md-3 ";
 						}
-						$pregunta_inicial = array_values($data)[0]['id_pregunta'];
+						
 						$array_group = array();
 
 						foreach ($data as $key => $value) {
 						 $array_group[$value['id_pregunta']][$key] = $value;
 						}
 
-						$k = $pregunta_inicial;
-						$e = 0;
+            switch($faceta){
+            	case 1:
+            	  $indice = 1;
+            	break;
+            	case 2:
+            	  $indice = 5;
+            	break;
+            	case 3:
+            	  $indice = 9;
+            	break;
+            	case 4:
+            	  $indice = 13;
+            	break;
+            	case 5:
+            	  $indice = 17;
+            	break;
+            }
+						shuffle($array_group);
 
-						for ($i=0; $i < count($array_group); $i++) {
+						foreach ($array_group as $key => $value) {
+							$pregunta = "";
+							$pregunta = current($value);
+							$actual = $value;
+
 							echo "<div class='card'>";
-							echo "<div class='error_msg' id='error".$k."'></div>";
-							echo "<div class='card-header'><h5>Pregunta ".$k."</h5></div>";
+							echo "<div class='error_msg' id='error".$indice."'></div>";
+							echo "<div class='card-header'><h5>Pregunta ".$indice."</h5></div>";
 							echo "<div class='card-body'>";
 
-									echo "<div class='contenedor_p_".$k."'>";
-									echo "<div class='row'>";
-									echo "<div class='".$columna."col-md-6'>";
-										for ($j= 0; $j < count($array_group[$k]) ; $j++) { 
-											echo "<div class='contenedor_drag'>";
-												echo "<div class='drag_origen' id='nido_".$array_group[$k][$e]['id_opcion']."'>";
-												echo "<input type='hidden' name='opcion[]' value='".$array_group[$k][$e]['id_opcion']."'>";
-												echo "<label>".utf8_encode($array_group[$k][$e]['descripcion'])."</label>";
-												echo "</div>";
-												echo "</div><br><br>";
-											
-											$e++;
-										}
+								echo "<div class='contenedor_p_".$pregunta['id_pregunta']."''>";
+								echo "<div class='row'>";
+                echo "<div class='".$columna."col-md-6'>";
+								foreach ($actual as $key => $value) {
+									echo "<div class='contenedor_drag'>";
+									echo "<div class='drag_origen' id='nido_".$value['id_opcion']."'>";
+									echo "<input type='hidden' name='opcion[]' value='".$value['id_opcion']."'>";
+									echo "<label>".utf8_encode($value['descripcion'])."</label>";
 									echo "</div>";
-									echo "<div class='".$columna."col-md-6'>";
-										for ($l= 0; $l < count($array_group[$k]) ; $l++) { 
-											echo "<span class='order_priority'>".($l+1)."</span>";
-											echo "<div class='drop_destino'><input type='hidden' name='orden[]' value='".($l+1)."'></div><br><br>";
-										}
-									$k++;
-									echo "</div>";
-									echo "</div>";
-									echo "</div>";
+									echo "</div><br><br>";
+								}
+								echo "</div>";
+
+								echo "<div class='col-md-6'>";
+								$l = 1;
+								foreach ($actual as $key => $value) {
+									echo "<span class='order_priority'>".($l)."</span>";
+									echo "<div class='drop_destino'><input type='hidden' name='orden[]' value='".($l++)."'></div><br><br>";
+								}
+								echo "</div>";
+
+								echo "</div>";
+								echo "</div>";
 
 							echo "</div>";
 							echo "</div>";
 							echo "<br><br>";
+							$indice++;
 						}
 					  ?>
 

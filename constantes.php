@@ -10,7 +10,7 @@ define('PUERTO', 'http');
 define('FRONTEND_RUTA', 'C:/wamp64/www/cuestionario/');
 define('DBSERVIDOR', 'localhost');
 define('DBUSUARIO', 'root'); 
-define('DBNOMBRE', 'micamello_desarrollo3');
+define('DBNOMBRE', 'micamello_desarrollo2');
 define('DBCLAVE', '');     
 define('RUTA_INCLUDES', FRONTEND_RUTA.'includes/');
 define('RUTA_FRONTEND', FRONTEND_RUTA.'frontend/'); 
@@ -54,6 +54,7 @@ define('TIPO_DOCUMENTO', array('1'=>'RUC','2'=>'CÉDULA','3'=>'PASAPORTE'));
 define('DOCUMENTACION', array('2'=>'CÉDULA', '3'=>'PASAPORTE'));
 define('EDAD', array('1'=>'Entre 18 y 20 a&ntilde;os', '2'=>'Entre 20 y 30 a&ntilde;os','3'=>'Entre 30 y 40 a&ntilde;os','4'=>'Entre 40 y 50 a&ntilde;os','5'=>'M&aacute;s de 50 a&ntilde;os'));
 define('OPCIONES',array('a','b','c','d','e'));
+define('VISIBILIDAD',1);
 
 // método de selección
 define('METODO_SELECCION', array('1'=>array(
