@@ -231,8 +231,8 @@ ul{text-align: left; padding-left: 20px;}
 /*drag and drop*/
 
 .encabezado{
-  text-align:justify; font-size: 14px; 
-  font-weight: bold;"
+  text-align:justify; font-size: 18px; 
+  font-weight: bold;
 }
 
 .con_encabezado{
@@ -240,6 +240,7 @@ ul{text-align: left; padding-left: 20px;}
   padding: 10px;
   border-radius: 10px 10px 0 0;
   box-shadow: 0 1px 4px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.10);
+  text-align: justify;
 }
 
 .drag_origen{

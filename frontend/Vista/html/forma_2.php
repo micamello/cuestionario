@@ -61,6 +61,7 @@ $navegador = getBrowser($user_agent);
 			<div class="con_encabezado">
 				<span class="encabezado">Por favor ordene de 1 a 5 las siguientes oraciones en cada pregunta. (1 es la oración con la que mas se identifica y 5 es con la que menos se identifica). Este cuestionario consta de 20 preguntas</span>
 			</div>
+			<br>
 		</div>
 		<div class="">
 			<div class="">
