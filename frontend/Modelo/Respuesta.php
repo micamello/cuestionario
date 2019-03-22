@@ -17,16 +17,19 @@ class Modelo_Respuesta{
   }
 
   /************MINISITIO****************/
-  public static function guardarValores($orden,$tiempo,$idusuario,$idopcion){    
+  public static function guardarValores($orden,$tiempo,$idusuario,$idopcion){   
+    $array_session = array(); $result = 1;
     if (empty($orden) || empty($tiempo) || empty($idusuario) || empty($idopcion)){ return false; }
-    foreach($orden as $key=>$values){
-      $datosinsert = array('orden_seleccion' => $orden[$key],
-                         'tiempo' => $tiempo,
-                         'id_usuario' => $idusuario,
-                         'id_opcion' => $idopcion[$key]);
-      $return = $GLOBALS['db']->insert('mfo_respuestam2',$datosinsert);
-    }    
-    return $return;
+    
+    foreach ($orden as $key => $value) {
+      if (!self::existeRespuesta($idusuario,$idopcion[$key])){    
+        array_push($array_session,array($orden[$key], "'".$tiempo."'", $idusuario, $idopcion[$key]));
+      }
+    }
+    if (!empty($array_session)){
+      $result = $GLOBALS['db']->insert_multiple("mfo_respuestam2","orden_seleccion,tiempo,id_usuario,id_opcion",$array_session); 
+    }
+    return $result;
   }
 
   public static function verResultados($edad='', $nacionalidad='', $ciudadnac='', $genero='', $estadocivil='', $profesion='', 
@@ -130,6 +133,18 @@ class Modelo_Respuesta{
       else{
         return $result2['id_faceta'];
       }
+    }
+  }
+  
+  public static function existeRespuesta($idusuario,$idopcion){
+    if (empty($idusuario) || empty($idopcion)){ return false; }
+    $sql = "SELECT id_respuesta FROM `mfo_respuestam2` where id_usuario = ? and id_opcion = ?";
+    $rs = $GLOBALS['db']->auto_array($sql,array($idusuario,$idopcion));
+    if (isset($rs['id_respuesta']) && !empty($rs['id_respuesta'])){
+      return true;    
+    }
+    else{
+      return false;    
     }
   }
 

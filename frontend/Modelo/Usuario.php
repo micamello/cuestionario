@@ -251,7 +251,9 @@ public static function existeUsername($username){
   }
 
   public static function validarFechaNac($fecha){
-
+    if (!Utils::valida_fecha($fecha)){
+      return false;
+    }
     //Creamos objeto fecha desde los valores recibidos
     $nacio = DateTime::createFromFormat('Y-m-d', $fecha);
 
@@ -961,11 +963,14 @@ WHERE
     if($data['terminos_condiciones'] == 'on'){
       $term_cond = 1;
     }
-
+    
     $data_usuario = array("nombres"=>$data['nombres'], "apellidos"=>$data['apellidos'], "fecha_nacimiento"=>$data['fecha_nacimiento'], "id_nacionalidad"=>$data['pais'], "genero"=>$data['genero'], "estado_civil"=>$data['estado_civil'], "id_escolaridad"=>$data['nivel_instruccion'], "fecha_creacion"=>date("Y-m-d H:i:s"), "term_cond"=>$term_cond, "correo"=>$data['correo'], "id_provincia_res"=>$data['provincia_res'], "id_profesion"=>$data['profesion'], "id_ocupacion"=>$data['ocupacion'],'tipodoc'=>$data['documentacion'],'dni'=>$data['dni']);
 
     if($data['provincia'] != ''){
       $data_usuario["id_provincia"] = $data['provincia'];
+    }
+    else{
+      $data_usuario["id_provincia"] = 'null';
     }
 
     if($data['empresa'] == 0){
@@ -975,9 +980,16 @@ WHERE
       $data_usuario["id_empresa"] = $data['empresa']; 
     }
 
-    if($tipo == 1){
-      $result = $GLOBALS['db']->insert('mfo_usuariom2', $data_usuario);
-    }else if($tipo == 2){
+    $existe = self::existeDni($data['dni']);      
+    if($tipo == 1 && empty($existe)){      
+      $data_usuario["visibilidad"] = VISIBILIDAD;
+      $data_usuario["metodo_ordenamiento"] = 1;
+      $result = $GLOBALS['db']->insert('mfo_usuariom2', $data_usuario);      
+    }else if($tipo == 2 || is_array($existe)){
+      if (is_array($existe)){
+        $idUsuario = $existe['id_usuario'];
+      }
+      unset($data_usuario['fecha_creacion']);
       $result = $GLOBALS['db']->update("mfo_usuariom2",$data_usuario,"id_usuario=".$idUsuario);
     }
 
@@ -989,6 +1001,12 @@ WHERE
     $sql = "SELECT * FROM mfo_usuariom2 WHERE dni = ".$dni;
 
     $rs = $GLOBALS['db']->auto_array($sql,array());
+    //if (!empty($rs)){
+    //  $rs['nombres'] = Utils::no_carac2($rs['nombres']);
+    //  $rs['apellidos'] = Utils::no_carac2($rs['apellidos']); 
+      //Utils::log("UNO ".htmlentities($rs['apellidos']));     
+    //}
+    //Utils::log("RS1 ".print_r($rs,true));
     return (empty($rs['dni'])) ? false : $rs;
   }
 
@@ -996,11 +1014,18 @@ WHERE
     if(empty($idUsuario)){ return false; }
     $sql = "SELECT * FROM mfo_usuariom2 WHERE id_usuario = ".$idUsuario;
     $rs = $GLOBALS['db']->auto_array($sql,array());
+ 
+    if (!empty($rs)){
+      $rs['nombres'] = utf8_decode($rs['nombres']);
+      $rs['apellidos'] = utf8_decode($rs['apellidos']); 
+     //Utils::log("UNO ".utf8_encode($rs['apellidos']));     
+    }
+    //Utils::log("RS2 ".print_r($rs,true));
     return $rs;
   }
 
   public static function obtieneListadoEmpresas(){
-    $sql = "SELECT * FROM mfo_empresam2";
+    $sql = "SELECT * FROM mfo_empresam2 ORDER BY nombre";
     return $GLOBALS['db']->auto_array($sql,array(),true);
   }
 

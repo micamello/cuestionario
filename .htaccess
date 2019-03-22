@@ -1,0 +1,19 @@
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !^/cuestionario$
+RewriteRule . - [E=REWRITEBASE:/cuestionario/]
+
+#Registrodatostest
+RewriteRule ^registrodatostest/?$ %{ENV:REWRITEBASE}index.php?mostrar=regtest&opcion=guardardatostest [L]
+
+#inicioTest
+RewriteRule ^test/?$ %{ENV:REWRITEBASE}index.php?mostrar=cuestionariom2 [L]
+
+RewriteRule ^gracias/?$ %{ENV:REWRITEBASE}index.php?mostrar=regtest&opcion=gracias [L]
+
+#RegistroRespuestas
+RewriteRule ^registroresp/?$ %{ENV:REWRITEBASE}index.php?mostrar=cuestionariom2&opcion=guardarresp [L]
+
+#Seleccionmetodo
+RewriteRule ^metodo_seleccion/?$ %{ENV:REWRITEBASE}index.php?mostrar=cuestionariom2&opcion=metodo_resp [L]
+RewriteRule ^cuestionarioM2/?$ %{ENV:REWRITEBASE}index.php?mostrar=cuestionarioM2 [L]
+RewriteRule ^test_reg_var/?$ %{ENV:REWRITEBASE}index.php?mostrar=cuestionariom2&opcion=reg_var [L]

@@ -207,6 +207,7 @@ ul{text-align: left; padding-left: 20px;}
   right: 0;
   margin: 0 5px 5px 0;
   background-color: #D17F7F;  color: white;
+  cursor: pointer;
 }
 
 .delete_icon:hover{
@@ -227,15 +228,86 @@ ul{text-align: left; padding-left: 20px;}
   text-align: left;
 }
 
+/*drag and drop*/
 
-/*.eder{
-  white-space: nowrap;
-  word-wrap: break-word;
-  width: 100%; 
-  overflow: hidden;
-  text-overflow: hidden; 
-  border: 1px solid #000000;
-}*/
+.encabezado{
+  text-align:justify; font-size: 18px; 
+  font-weight: bold;
+}
 
+.con_encabezado{
+  background-color: #FFFFFF;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.10);
+  text-align: justify;
+}
 
+.drag_origen{
+  /*border-color: #CFC7C7;
+  border-radius: 5px;
+  min-height: 50px;
+  padding: 10px 10px 10px 10px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background-image: linear-gradient(225deg, #FFE29F 0%, #FFA99F 48%, #FF719A 100%);*/
+  /*background-color: #E6E4E4;*/
+  /*border: dashed;*/
+  border-color: #CFC7C7;
+  border-radius: 5px;
+  min-height: 50px;
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+}
+.drop_destino{
+  /*border-color: #C8DAE4;
+  border-radius: 5px;
+  min-height: 70px;
+  padding: 10px 5px;
+  text-align: justify;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
+  color: black;
+  background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);*/
+  background-color: #C8DAE4;
+  border: dashed;
+  border-color: #C8DAE4;
+  border-radius: 5px;
+  min-height: 50px;
+  padding: 0 20px 0 20px;
+  text-align: justify;
+}
 
+.contenedor_drag{
+  /*min-height: 70px;
+  border-radius: 5px;
+  color: black;
+  padding: 10px 5px;
+  background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);*/
+  background-color: #e6e4e4;
+  /*border: dashed;*/
+  border-color: #C8DAE4;
+  border-radius: 5px;
+  min-height: 50px;
+  padding: 0 20px 0 20px;
+  text-align: justify;
+
+}
+
+.espacio{
+  border: 1px inset rgba(28,110,164,0.35);
+  border-radius: 23px 23px 23px 23px;
+}
+
+.window_body{
+ /*background-image: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);*/
+ background-color: white;
+}
+
+.color{
+  background-color: white;
+  border-radius: 10px 5px;
+}
+
+.drag_origen>label{
+  cursor: pointer;
+}

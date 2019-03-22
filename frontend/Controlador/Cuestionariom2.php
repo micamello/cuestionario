@@ -19,7 +19,7 @@ class Controlador_Cuestionariom2 extends Controlador_Base{
             $_SESSION['id_faceta'] = Modelo_Respuesta::facetaSiguiente($id_usuario);
         }
         catch( Exception $e ){      
-          echo $e->getMessage();
+          //echo $e->getMessage();
           $_SESSION['mostrar_error'] = $e->getMessage();  
         }
         Utils::doRedirect(PUERTO.'://'.HOST.'/test');
@@ -35,9 +35,9 @@ class Controlador_Cuestionariom2 extends Controlador_Base{
         else{
           $_SESSION['id_faceta'] = Modelo_Respuesta::facetaSiguiente($_SESSION['id_usuario']);
         }
-        if(!isset($_SESSION['metodo_seleccionado_vista'])){
+        //if(!isset($_SESSION['metodo_seleccionado_vista'])){
           $_SESSION['metodo_seleccionado_vista'] = "forma_".$_POST['seleccion'];
-        }
+        //}
         Modelo_Usuario::actualizarMetodo($_POST['seleccion'],$_SESSION['id_usuario']);
         Utils::doRedirect(PUERTO.'://'.HOST.'/test');
       break;
@@ -113,7 +113,7 @@ class Controlador_Cuestionariom2 extends Controlador_Base{
     }
     else{
       $data = Modelo_Opcion::obtieneOpciones($faceta);
-      Vista::render($vista,array('data'=>$data, 'tiempo'=>date("Y-m-d H:i:s")), '', '');  
+      Vista::render($vista,array('data'=>$data, 'tiempo'=>date("Y-m-d H:i:s"), 'faceta'=>$rs), '', '');  
     }
     //funcion que obtiene las opciones de una pregunta especifica    
     

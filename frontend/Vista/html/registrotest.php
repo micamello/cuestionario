@@ -1,14 +1,65 @@
-<!DOCTYPE html>
+<?php 
+header("Expires: Tue, 01 Jan 2000 00:00:00 GMT"); 
+header("Last-Modified: " . gmdate("D, d MYH:i:s") . " GMT"); 
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0"); 
+header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Pragma: no-cache");
+clearstatcache();
+
+$user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+function getBrowser($user_agent){
+
+  if(strpos($user_agent, 'MSIE') !== FALSE)
+    return 'MSIE';
+  elseif(strpos($user_agent, 'Edge') !== FALSE) //Microsoft Edge
+    return 'Microsoft Edge';
+  elseif(strpos($user_agent, 'Trident') !== FALSE) //IE 11
+    return 'Internet explorer 11';
+  elseif(strpos($user_agent, 'Opera Mini') !== FALSE)
+    return "Opera Mini";
+  elseif(strpos($user_agent, 'Opera') || strpos($user_agent, 'OPR') !== FALSE)
+    return "Opera";
+  elseif(strpos($user_agent, 'Firefox') !== FALSE)
+    return 'Mozilla Firefox';
+  elseif(strpos($user_agent, 'Chrome') !== FALSE)
+    return 'Google Chrome';
+  elseif(strpos($user_agent, 'Safari') !== FALSE)
+    return "Safari";
+  else
+    return 'No hemos podido detectar su navegador';
+}
+
+$navegador = getBrowser($user_agent);
+
+if($navegador == 'Safari'){
+  $columna = '12';
+}else{
+  $columna = '6';
+}
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
   <title>Registro de Datos</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.5/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/all.css">
+  <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/minisitio.css">
+  <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/DateTimePicker.css">  
+  
 </head>
 <body class="window_class">
+  <?php if($navegador == 'MSIE'){ ?>
+  <div align="center" id="mensaje" style="height: 150px;background: #c36262;"><br>
+    <h3>Usted esta usando internet explorer 8 o inferior</h3>
+    <p>Esta es una versi&oacute;n antigua del navegador, y puede afectar negativamente a su seguridad y su experiencia de navegaci&oacute;n.</p><p>Por favor, actualice a la version actual de IE o cambie de navegador ahora.</p>
+    <p><b><a href="https://www.microsoft.com/es-es/download/internet-explorer.aspx">Actualizar IE</a></b></p>
+  </div>
+  <?php } ?>
   <?php if(!isset($show_banner) && !isset($breadcrumbs)){ ?>
   <?php } ?>
     <!--mensajes de error y exito-->
@@ -30,12 +81,12 @@
     <div class="card shadow-lg rounded text-center">
       <form action="<?php echo PUERTO."://".HOST;?>/registrodatostest/" method="POST" id="form_registrotest">
         <div class="card-header bg-info text-white">
-          Registro de datos
+          Registro de datos 
         </div>
         <div class="card-body">
           <input type="hidden" name="form_register" id="form_register" value="1">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-<?php echo $columna; ?>">
               <div class="form-group" id="seleccione_group">
                 <label for="tipo_dni">Tipo de documento</label><i class="asterisk_red">*</i>
                 <select autocomplete="on" class="form-control" id="documentacion" name="documentacion">
@@ -55,42 +106,45 @@
                 </select>
                 <div></div>
               </div>
-            </div>                             
-            <div class="col-md-6">
+            </div>  
+
+            <div class="col-md-<?php echo $columna; ?>">
               <div class="form-group" id="seccion_dni">
                   <label for="dni" id="nombre_dni">C&eacute;dula</label><i class="asterisk_red">*</i>
-                  <input autocomplete="on" class="form-control" type="text" id="dni" name="dni" value="<?php if (isset($result['dni'])){ echo $result['dni']; } ?>" disabled/>
+                  <input class="form-control" type="text" id="dni" name="dni" value="<?php if (isset($result['dni'])){ echo $result['dni']; } ?>"/>
                   <div></div>
               </div>
-            </div>
-            <div class="col-md-6">
+            </div>    
+
+            <div class="col-md-<?php echo $columna; ?>">
               <div class="form-group">
                <label for="nombres">Nombres</label><i class="asterisk_red">*</i>
-               <input autocomplete="on" type="text" id="nombres" class="form-control" id="nombres" name="nombres" value="<?php if (isset($result['nombres'])){ echo $result['nombres']; } ?>" disabled>
+               <input autocomplete="on" type="text" id="nombres" class="form-control" id="nombres" name="nombres" value="<?php if (isset($result['nombres'])){ echo $result['nombres']; } ?>">
                <div></div>
              </div>
             </div>
             <!--<input type="hidden" name="registro_datos" id="registro_datos" value="1">-->
-            <div class="col-md-6">
+            <div class="col-md-<?php echo $columna; ?>">
              <div class="form-group">
               <label for="apellidos">Apellidos</label><i class="asterisk_red">*</i>
-              <input autocomplete="on" type="text" class="form-control" id="apellidos" name="apellidos" value="<?php if (isset($result['apellidos'])){ echo $result['apellidos']; } ?>" disabled>
+              <input autocomplete="on" type="text" class="form-control" id="apellidos" name="apellidos" value="<?php if (isset($result['apellidos'])){ echo $result['apellidos']; } ?>">
               <div></div>
              </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-<?php echo $columna; ?>">
               <div class="form-group">
                 <label for="fecha">Fecha de nacimiento</label><i class="asterisk_red">*</i>
-                <input autocomplete="on" type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" value="<?php if (isset($result['fecha_nacimiento'])){ echo $f = str_replace(" 00:00:00", "", $result['fecha_nacimiento']); } ?>" disabled>
-                <div></div>
+                <input type="text" data-field="date" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" placeholder="aaaa-mm-dd" value="<?php if (isset($result['fecha_nacimiento'])){ echo str_replace(' 00:00:00', '', $result['fecha_nacimiento']); } ?>" autocomplete="off">
+                <div id="fecha_error"></div>
+                <div id="fecha"></div>
               </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-<?php echo $columna; ?>">
               <div class="form-group">
                 <label for="genero">Género</label><i class="asterisk_red">*</i>
-                <select autocomplete="on" name="genero" class="form-control" id="genero" disabled>
+                <select autocomplete="on" name="genero" class="form-control" id="genero">
                   <option value="1" selected="selected" disabled="disabled">Seleccione una opción</option>
                   <?php 
                      $option = '';
@@ -110,10 +164,10 @@
               </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-<?php echo $columna; ?>">
               <div class="form-group">
                 <label for="estado_civil">Estado civil</label><i class="asterisk_red">*</i>
-                <select autocomplete="on" class="form-control" name="estado_civil" id="estado_civil" disabled><i class="asterisk_red">*</i>
+                <select autocomplete="on" class="form-control" name="estado_civil" id="estado_civil">
                   <option value="0" selected="" disabled="">Seleccione una opción</option>
                   <?php 
                     $option = '';
@@ -123,7 +177,7 @@
                       { 
                         $option .= " selected='selected'";
                       }
-                      $option .= ">".$value."</option>";
+                      $option .= ">".utf8_encode($value)."</option>";
                     }
                     echo $option;
                    ?>
@@ -132,10 +186,10 @@
               </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-<?php echo $columna; ?>">
               <div class="form-group">
                 <label for="nivel_instruccion">Nivel de instrucción</label><i class="asterisk_red" disabled>*</i>
-                  <select autocomplete="on" class="form-control" name="nivel_instruccion" id="nivel_instruccion" disabled>
+                  <select autocomplete="on" class="form-control" name="nivel_instruccion" id="nivel_instruccion">
                     <option value="0" selected="" disabled="">Seleccione una opción</option>
                     <?php 
                       $option = '';
@@ -154,10 +208,10 @@
               </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-<?php echo $columna; ?>">
               <div class="form-group">
                 <label for="profesion">Profesión</label><i class="asterisk_red">*</i>
-                  <select autocomplete="on" class="form-control" name="profesion" id="profesion" data-live-search="true" disabled>
+                  <select autocomplete="on" class="form-control" name="profesion" id="profesion" data-live-search="true">
                     <option value="0" selected="" disabled="">Seleccione una opción</option>
                     <?php 
                        $option = '';
@@ -176,10 +230,10 @@
               </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-<?php echo $columna; ?>">
               <div class="form-group">
                 <label for="ocupacion">Ocupación</label><i class="asterisk_red">*</i>
-                <select autocomplete="on" class="form-control" name="ocupacion" id="ocupacion" data-live-search="true" disabled>
+                <select autocomplete="on" class="form-control" name="ocupacion" id="ocupacion" data-live-search="true">
                   <option value="0" selected="" disabled="">Seleccione una opción</option>
                   <?php 
                     $option = '';
@@ -198,10 +252,10 @@
               </div>
             </div>                                
 
-            <div class="col-md-6">
+            <div class="col-md-<?php echo $columna; ?>">
               <div class="form-group">
                 <label>Provincia de Residencia</label><i class="asterisk_red">*</i>
-                <select autocomplete="on" class="form-control" name="provincia_res" id="provincia_res" disabled>
+                <select autocomplete="on" class="form-control" name="provincia_res" id="provincia_res" >
                   <option value="0" selected="" disabled="">Seleccione una opción</option>
                   <?php 
                     $option = '';
@@ -220,10 +274,10 @@
               </div>
             </div>                      
 
-            <div class="col-md-6">
+            <div class="col-md-<?php echo $columna; ?>">
               <div class="form-group">
                 <label for="correo">Correo</label><i class="asterisk_red">*</i>
-                <input autocomplete="on" type="text" class="form-control" name="correo" id="correo" value="<?php if (isset($result['correo'])){ echo $result['correo']; } ?>" disabled>
+                <input autocomplete="on" type="text" class="form-control" name="correo" id="correo" value="<?php if (isset($result['correo'])){ echo $result['correo']; } ?>" >
                 <div></div>
               </div>
             </div>
@@ -231,7 +285,7 @@
             <div class="col-md-12" id="pais_content">
               <div class="form-group">
                 <label>Pa&iacute;s de Nacimiento</label><i class="asterisk_red">*</i>
-                <select autocomplete="on" class="form-control" name="pais" id="pais" disabled>
+                <select autocomplete="on" class="form-control" name="pais" id="pais" >
                   <option value="0" selected="" disabled="">Seleccione una opción</option>
                   <?php 
                     $option = '';
@@ -249,14 +303,16 @@
                 <div></div>
               </div>
             </div>
+         
 
-            <div class="col-md-12" style="display: none;" id="provincia_content">
+            <?php if((isset($result['id_provincia']) && !empty($result['id_provincia'])) || (isset($result['id_nacionalidad']) && $result['id_nacionalidad'] == SUCURSAL_PAISID)){ ?>
+            <div class="col-md-12" id="nuevo_div">
+            <div class="col-md-12" id="provincia_content">
               <div class="form-group">
                 <label>Provincia de Nacimiento</label><i class="asterisk_red">*</i>
                 <select autocomplete="on" class="form-control" name="provincia" id="provincia">
                   <option value="0" selected="" disabled="">Seleccione una opción</option>
-                  <?php 
-                    if(isset($result['id_provincia']) && $result['id_provincia'] != ''){
+                  <?php  
                       $option = '';
                       foreach ($provincia as $provincia_listado) {
                         $option .= "<option value='".$provincia_listado['id_provincia']."'";
@@ -266,18 +322,23 @@
                         }
                         $option .= ">".utf8_encode($provincia_listado['nombre'])."</option>";
                       }
-                      echo $option;
-                    }
+                      echo $option;                    
                    ?>
                 </select>
                 <div></div>
               </div>
             </div>  
+          </div>
+            <?php } else{ ?>
+                <div class="col-md-12" id="nuevo_div">
+                  <input type="hidden" name="provincia" id="provincia" value="">
+                </div>
+              <?php }  ?>
             
-            <div class="col-md-12" id="pais_content">
+            <div class="col-md-12" id="empr">
               <div class="form-group">
                 <label>Relaci&oacute;n de Dependencia (Empresa)</label><i class="asterisk_red">*</i>
-                <select autocomplete="on" class="form-control" name="empresa" id="empresa" disabled>
+                <select autocomplete="on" class="form-control" name="empresa" id="empresa" >
                   <option value="-1" selected="" disabled="">Seleccione una opción</option>
                   <?php 
                     if (empty($result['id_empresa'])){
@@ -303,38 +364,76 @@
 
             <div class="col-md-12">
               <div class="form-check">
-                <input autocomplete="on" type="checkbox" class="form-check-input" name="terminos_condiciones" id="terminos_condiciones" <?php if (isset($result['term_cond'])){ echo 'checked'; } ?> disabled>
+                <input autocomplete="on" type="checkbox" class="form-check-input" name="terminos_condiciones" id="terminos_condiciones" <?php if (isset($result['term_cond'])){ echo 'checked'; } ?> >
                 <label class="form-check-label" for="terminos_condiciones">Aceptar <a href="<?php echo PUERTO."://".HOST."/documentos/politicas.pdf";?>" target="_blank">políticas</a> para presentar y publicar el TEST</label><i class="asterisk_red">*</i>
                 <div></div>
               </div>
             </div>
           </div>
           <input type="text" hidden id="puerto_host" value="<?php echo PUERTO."://".HOST ;?>">
-          <input type="text" hidden name="metodo_resp" id="metodo_resp" value="<?php if (isset($result['metodo_resp'])){ echo $result['metodo_resp']; }else{ echo ''; } ?>">
+          <input type="text" hidden name="metodo_resp" id="metodo_resp" value="<?php if(isset($result['metodo_resp'])){ echo $result['metodo_resp']; } ?>">
           <div class="alert alert-danger" style="display: none" id="errors_form" role="alert">
             
           </div>
 
         </div>
-        <div class="card-footer bg-transparent text-muted">
-          <input type="submit" name="" id="registro" class="btn btn-success" value="<?php echo $accion; ?>">
-        </div>
+        <?php if($navegador != 'MSIE'){ ?>
+          <div class="card-footer bg-transparent text-muted">
+            <input type="submit" name="registro" id="registro" class="btn btn-success" value="<?php echo $accion; ?>">
+          </div>
+        <?php } ?>
       </form>
     </div>
   <!--</div>-->
 </div>
 <br>
 
-<script src="<?php echo PUERTO."://".HOST;?>/js/assets/js/vendor/jquery-3.0.0.js"></script>
-<script src="<?php echo PUERTO."://".HOST;?>/js/minisitio.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="<?php echo PUERTO."://".HOST;?>/js/popper.min.js"></script>
-<script src="<?php echo PUERTO."://".HOST;?>/js/bootstrap.min.js"></script>
-<script src="<?php echo PUERTO."://".HOST;?>/js/bootstrap-select.min.js"></script>
+<?php 
+
+ 
+if($navegador == 'MSIE'){
+  echo '<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/jquery.min-1.3.1.js"></script>
+  <script type="text/javascript" src="'.PUERTO."://".HOST.'/js/minisitio.js"></script>';
+}else{  
+  echo '<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/jquery-3.0.0.js"></script>  
+  <script type="text/javascript" src="'.PUERTO."://".HOST.'/js/popper.min.js"></script>
+  <script type="text/javascript" src="'.PUERTO."://".HOST.'/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="'.PUERTO."://".HOST.'/js/bootstrap-select.min.js"></script>
+  <script type="text/javascript" src="'.PUERTO."://".HOST.'/js/minisitio_nomovil.js"></script>
+  <script type="text/javascript" src="'.PUERTO."://".HOST.'/js/DateTimePicker.js"></script>  
+  ';
+}
+?>
+
 <script>
 $( document ).ready(function() {
-  $('#profesion').selectpicker();
-  $('#ocupacion').selectpicker();  
+
+  function navegador(){
+      var agente = window.navigator.userAgent;
+      var navegadores = ["Chrome", "Firefox", "Safari", "Opera", "MSIE", "Trident", "Edge"];
+      for(var i in navegadores){
+          if(agente.indexOf( navegadores[i]) != -1 ){
+              return navegadores[i];
+          }
+      }
+  }
+//console.log(window.navigator.userAgent);
+  if(navegador() != 'MSIE'){
+    $('#profesion').selectpicker();
+    $('#ocupacion').selectpicker();   
+    $('#fecha').DateTimePicker({
+      dateFormat: "yyyy-MM-dd",
+      shortDayNames: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+      shortMonthNames: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+      fullMonthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Deciembre"],
+      titleContentDate: "Configurar fecha",
+      titleContentTime: "Configurar tiempo",
+      titleContentDateTime: "Configurar Fecha & Tiempo",
+      setButtonContent: "Listo",
+      clearButtonContent: "Limpiar"
+    });
+  }
+
 });
 </script>
 

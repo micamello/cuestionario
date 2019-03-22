@@ -10,7 +10,7 @@ define('PUERTO', 'http');
 define('FRONTEND_RUTA', 'C:/wamp64/www/cuestionario/');
 define('DBSERVIDOR', 'localhost');
 define('DBUSUARIO', 'root'); 
-define('DBNOMBRE', 'micamello_desarrollo3');
+define('DBNOMBRE', 'micamell_desarrollo3');
 define('DBCLAVE', '');     
 define('RUTA_INCLUDES', FRONTEND_RUTA.'includes/');
 define('RUTA_FRONTEND', FRONTEND_RUTA.'frontend/'); 
@@ -46,7 +46,7 @@ define('ANOSEXP', array('1'=>'Sin Experiencia', '2'=>'1 - 3 a&ntilde;os', '3'=>'
 define('REGISTRO_PAGINA',10);
 define('RUTA_PAYPAL','https://www.sandbox.paypal.com/cgi-bin/webscr');
 define('REQUISITO', array('0'=>'No', '1'=>'S&iacute;'));
-define('ESTADO_CIVIL',array('1'=>'Soltero(a)', '2'=>'Casado(a)', '3'=>'En union', '4'=>'Divorciado(a)','5'=>'Viudo(a)'));
+define('ESTADO_CIVIL',array('1'=>'Soltero(a)', '2'=>'Unión libre', '3'=>'Casado(a)', '4'=>'Separado(a)','5'=>'Divorciado(a)','6'=>'Viudo(a)','7'=>'Otro'));
 define('CRON_RUTA',FRONTEND_RUTA.'cron/');
 define('DIAS_AUTOPOSTULACION','3');
 define('AUTOPOSTULACION_MIN','5');
@@ -56,7 +56,11 @@ define('EDAD', array('1'=>'Entre 18 y 20 a&ntilde;os', '2'=>'Entre 20 y 30 a&nti
 define('OPCIONES',array('a','b','c','d','e'));
 
 // método de selección
-define('METODO_SELECCION', array('1'=>'Doble click', '2'=>'Escribir número'));
+define('METODO_SELECCION', array('1'=>array(
+										'Esta opción le permitirá dar doble clip para seleccionar la respuesta, tome en cuenta que el 1  es la opción  con la que más se siente identificado y 5 la opción con la que menos se siente identificado.'
+									), '2'=>array(
+										'Esta opción le permitirá seleccionar y arrastrar la respuesta; tome en cuenta que la opción 1 es la opción con la que más se siente identificado y la opción 5 la opción con la que menos se siente identificado.', ''
+									)));
 
 // facebook
 define('FB_ID_CLIENTE', '2148107835439054');
