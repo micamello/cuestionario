@@ -156,17 +156,17 @@
 <br><br>
 <?php 
  
-if($navegador == 'Internet explorer'){
+/*if($navegador == 'Internet explorer'){
 	echo '<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
 	<script src="'.PUERTO."://".HOST.'/js/jquery-ui-1.8.23.js"></script>
-	<script type="text/javascript" src="https://www.micamello.com.ec/ruleta/js/modos_respuesta.js"></script>';
-}else{
-	echo '<script type="text/javascript" src="https://www.micamello.com.ec/ruleta/js/jquery-3.0.0.js"></script>
+	<script src="'.PUERTO."://".HOST.'/js/modos_respuesta.js"></script>';
+}else{*/
+	echo '<script src="'.PUERTO."://".HOST.'/js/assets/js/vendor/jquery-3.0.0.js"></script>
 	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/jquery-ui-1.12.1.js"></script>
 	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/double-tap.js"></script>
 	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/modos_respuesta_nomovil.js"></script>';
-}
+//}
 ?>
 </body>
 </html>

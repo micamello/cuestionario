@@ -3,6 +3,7 @@
 if($('.contenedor_p').length){
 	var isTouched = false;
 	$('.contenedor_p').find('.text_origen').dblclick( function(){
+		
 		var destino = $(this).parents('.contenedor_p').find('.text_destino');
 		var contenido_val = $(this).text();
 		if(contenido_val != ""){

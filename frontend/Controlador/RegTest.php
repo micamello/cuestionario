@@ -243,6 +243,8 @@ class Controlador_RegTest extends Controlador_Base {
     }
 
     Vista::render('registrotest',array('pais'=>$pais, 'provincia'=>$provincia, 'escolaridad'=>$escolaridad, 'profesion'=>$profesion, 'ocupacion'=>$ocupacion,'accion'=>$accion, 'result'=>$result, 'empresas'=>$empresas), '', '');
+
+    //Vista::render('pagina_enconstruccion',array(),'','');
   }
 
 

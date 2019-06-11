@@ -20,7 +20,7 @@ class Modelo_Opcion{
 						INNER JOIN mfo_competenciam2 c ON p.id_competencia = c.id_competencia
 						WHERE c.id_faceta = ?
 						ORDER BY p.orden, RAND()";
-		return $GLOBALS['db']->auto_array($sql,array($faceta),true);		
+    return $GLOBALS['db']->auto_array($sql,array($faceta),true);
 	}
 }  
 ?>

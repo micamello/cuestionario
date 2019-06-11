@@ -10,7 +10,7 @@ define('PUERTO', 'http');
 define('FRONTEND_RUTA', 'C:/wamp64/www/cuestionario/');
 define('DBSERVIDOR', 'localhost');
 define('DBUSUARIO', 'root'); 
-define('DBNOMBRE', 'micamell_desarrollo3');
+define('DBNOMBRE', 'cuestionarios');
 define('DBCLAVE', '');     
 define('RUTA_INCLUDES', FRONTEND_RUTA.'includes/');
 define('RUTA_FRONTEND', FRONTEND_RUTA.'frontend/'); 
