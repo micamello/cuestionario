@@ -50,6 +50,7 @@ if($navegador == 'Safari'){
   <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/minisitio.css">
   <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/DateTimePicker.css">
+  <link rel="icon" type="image/x-icon" href="<?php echo PUERTO."://".HOST;?>/imagenes/favicon.ico">
   <!-- <link rel="stylesheet" type="text/css" href="../src/DateTimePicker.css" /> -->
   <!-- <script type="text/javascript" src="jquery-1.11.0.min.js"></script> -->
   <!-- <script type="text/javascript" src="../src/DateTimePicker.js"></script> -->

@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/assets/css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/minisitio.css">
 	<link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/sweetalert.v2.css">
+	<link rel="icon" type="image/x-icon" href="<?php echo PUERTO."://".HOST;?>/imagenes/favicon.ico">
 </head>
 <body class="window_body">
 <?php 
