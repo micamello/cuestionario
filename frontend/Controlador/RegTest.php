@@ -189,6 +189,9 @@ class Controlador_RegTest extends Controlador_Base {
       if (isset($_SESSION['datospost']['fecha_nacimiento']) && !empty($_SESSION['datospost']['fecha_nacimiento'])) {
         $result['fecha_nacimiento'] = $_SESSION['datospost']['fecha_nacimiento'];
       }
+      // print_r($result['fecha_nacimiento']);
+      // print_r($_SESSION['datospost']['fecha_nacimiento']);
+      // exit();
       if (isset($_SESSION['datospost']['genero']) && !empty($_SESSION['datospost']['genero'])) {
         $result['genero'] = $_SESSION['datospost']['genero'];
       }
