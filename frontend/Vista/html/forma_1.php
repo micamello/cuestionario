@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+4<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
@@ -202,6 +202,7 @@
 	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/jquery-ui-1.12.1.js"></script>
 	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/sweetalert.v2.js"></script>
+	<script src="<?php echo PUERTO."://".HOST;?>/js/jquery.ui.touch-punch.min.js"></script>
 	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/double-tap.js"></script>
 	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/modos_respuesta.js"></script>';
 //}
