@@ -806,3 +806,36 @@ function reemplazar(texto){
 					replace(/Oacute;/g, 'Ó').
 					replace(/Uacute;/g, 'Ú')
 }
+
+
+
+	$('#form_seleccion').on('submit', function(event){
+		if(validar_seleccion_form() <= 0){
+			validar_seleccion_form()
+			mostrarerror('Por favor, seleccione una de las opciones.');
+			Swal.fire({                
+                html: 'Por favor, seleccione una de las opciones.',
+                imageUrl: $('#puerto_host').val()+'/imagenes/wrong-04.png',
+                imageWidth: 75,
+                confirmButtonText: 'ACEPTAR',
+                animation: true
+              });  
+			event.preventDefault();
+		}
+		else{
+			$('#error_msg').html('');
+		}
+	});
+
+	if($('#form_seleccion').length){
+
+		$('#msg_canea').modal('show');
+		$('input[type="radio"]').on('click', function(){
+			$('#error_msg').html('');
+		});
+	}
+
+	function validar_seleccion_form(){
+		var count = $('[name="seleccion"]:checked').length;
+		return count;
+	}

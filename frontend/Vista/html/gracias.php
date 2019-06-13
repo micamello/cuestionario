@@ -7,23 +7,20 @@
   <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/all.css">
   <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/minisitio.css">
 </head>
-<body class="window_class">
+<body class="" style="background-color: rgb(32, 68, 120);">
   
-  <br>
-  
-  <div class="col-md-12" style="text-align: center;"><img src="<?php echo PUERTO;?>://<?php echo HOST;?>/imagenes/logo.png" height="100"></div>
-  <br>
-  
-<div class="container">
-<div class="col-md-12" style="text-align: center;">  
-<div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">Gracias por su colaboración!</h4>
-  <p>Usted ha completado exitosamente el test.</p>
-  <hr>
-  <p class="mb-0">Pronto sus resultados serán evaluados.</p>
-</div>
-</div>
-</div>
+
+<div class="col-md-12" style="text-align: center;">
+    <img src="<?php echo PUERTO.'://'.HOST; ?>/imagenes/logo-blanco-04.png" height="120"><br><br>
+  </div>
+  <!--<div class="container">-->
+  <div class="col-md-8 offset-md-2">
+    <div  style="padding-bottom: 20px" class="cuadro">
+      <h1 class="titulo">Ya ha terminado<br>¡Gracias por completar el <b>Test CANEA!</b></h1>
+      <p style="font-size: 16pt; text-align:center; margin-top: 20px;">Lo invitamos a pre-registrarse en <a style="color: #0b6699"href="https://www.micamello.com.ec/">NUESTRO PORTAL WEB</a></p>
+    </div>
+  </div>
+<br>
 
 <script src="<?php echo PUERTO."://".HOST;?>/js/assets/js/vendor/jquery-3.0.0.js"></script>
 <script src="<?php echo PUERTO."://".HOST;?>/js/minisitio.js"></script>

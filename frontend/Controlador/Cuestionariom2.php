@@ -22,12 +22,30 @@ class Controlador_Cuestionariom2 extends Controlador_Base{
           //echo $e->getMessage();
           $_SESSION['mostrar_error'] = $e->getMessage();  
         }
-        Utils::doRedirect(PUERTO.'://'.HOST.'/test');
+        Utils::doRedirect(PUERTO.'://'.HOST.'/test/');
       break;
       case 'metodo_resp':
-        Vista::render('metodo_seleccion', METODO_SELECCION, '', '');
+        if(isset($_SESSION['id_usuario'])){
+          $rs1 = Modelo_Respuesta::facetaSiguiente($_SESSION['id_usuario']);
+          if($rs1 != 1 && $rs1 != false){
+            Utils::doRedirect(PUERTO.'://'.HOST.'/test/');
+          }
+          elseif($rs1 == 1){
+
+            Vista::render('metodo_seleccion', METODO_SELECCION, '', '');
+          }
+          elseif($rs1 == false){
+            Utils::doRedirect(PUERTO.'://'.HOST.'/gracias/');
+          }
+        }
+        else{
+          Utils::doRedirect(PUERTO.'://'.HOST);
+        }
+        
       break;
       case 'reg_var':
+      // print_r($_POST);
+      // exit();
       //$_SESSION['id_usuario'] = ;
         if(!isset($_SESSION['id_faceta'])){
           $_SESSION['id_faceta'] = 1;
@@ -39,11 +57,13 @@ class Controlador_Cuestionariom2 extends Controlador_Base{
           $_SESSION['metodo_seleccionado_vista'] = "forma_".$_POST['seleccion'];
         //}
         Modelo_Usuario::actualizarMetodo($_POST['seleccion'],$_SESSION['id_usuario']);
-        Utils::doRedirect(PUERTO.'://'.HOST.'/test');
+        Utils::doRedirect(PUERTO.'://'.HOST.'/test/');
       break;
-      default:           
+      default:
+      if(!isset($_SESSION['id_usuario'])){
+        Utils::doRedirect(PUERTO.'://'.HOST.'/gracias/');
+      }
       $_SESSION['id_faceta'] = Modelo_Respuesta::facetaSiguiente($_SESSION['id_usuario']);
-        // $data = Modelo_Opcion::obtieneOpciones(1);
       self::renderscreen($_SESSION['id_faceta'], $_SESSION['metodo_seleccionado_vista']);
 
       break;

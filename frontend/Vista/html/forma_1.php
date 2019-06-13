@@ -4,10 +4,12 @@
 <head>
 	<title>Cuestionario</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/all.css">
 	<link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/assets/css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/minisitio.css">
+	<link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/sweetalert.v2.css">
 </head>
 <body>
 	<?php 
@@ -61,7 +63,7 @@
 		<div class="text-center">
 			<br>
 			<div class="con_encabezado">
-				<span class="encabezado">Por favor ordene de 1 a 5 las siguientes oraciones en cada pregunta. (1 es la oración con la que mas se identifica y 5 es con la que menos se identifica). Este cuestionario consta de 20 preguntas</span>
+				<span class="encabezado">Por favor ordene de 1 a 5 las siguientes oraciones en cada pregunta. (1 es la oración con la que mas se identifica y 5 es con la que menos se identifica). Este test consta de 20 preguntas<br><br><h3 class="metodoTexto"><b>Método seleccionado: </b>Doble click<img style="width: 3%;" src="<?php echo PUERTO.'://'.HOST.'/imagenes/metodoSel/1.png'; ?>"></h3></span>
 			</div>
 			<br>
 		</div>
@@ -144,7 +146,7 @@
 					  ?>
 					 <div class="row text-center">
 					 	 <div class="col-md-12">
-					     <input type="submit" name="" value="Guardar" class="btn btn-success">
+					     <input type="submit" name="" value="Guardar" class="btn-blue">
 					   </div>
 					 </div>
 				</form>
@@ -152,8 +154,42 @@
 		</div>
 	</div>
 </div>
-
+<input type="text" hidden id="puerto_host" value="<?php echo PUERTO."://".HOST ;?>">
 <br><br>
+<?php 
+	if($faceta == 1){
+?>
+<div class="modal fade" tabindex="-1" id="modal_recomendaciones" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    	<div class="text-center">
+      	<h1 class="qs-subt-1">RECOMENDACIONES</h1>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12" style="text-align: justify;">  
+             <span class="contenido-modal-rec">Para obtener mayor efectividad en su búsqueda de empleo, le invitamos a llenar el siguiente <b>Test de Personalidad</b>. Por favor, tome en cuenta las siguientes recomendaciones:<br></span>
+            <ul>
+            	<li class="contenido-modal-rec">Para obtener mejores resultados debe completar el Test CANEA en el menor tiempo posible, sin embargo no tiene límite fijado. </li>
+            	<li class="contenido-modal-list">Busque un lugar tranquilo para que pueda completar el test.</li>
+            	<li class="contenido-modal-list">Apague celulares o aparatos que puedan distraerlo.</li>
+            	<li class="contenido-modal-list">Conteste de forma honesta y precisa. <b>Solo puede acceder una vez.</b></li>
+            	<li class="contenido-modal-list">Al enviar no podrá realizar ningún tipo de corrección.</li>
+            </ul>   
+            <br>
+            <br>    
+            <center>
+              <button type="button" class="btn-blue" data-dismiss="modal">Iniciar Test</button>
+            </center> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php
+}
+?>
 <?php 
  
 /*if($navegador == 'Internet explorer'){
@@ -164,8 +200,9 @@
 	echo '<script src="'.PUERTO."://".HOST.'/js/assets/js/vendor/jquery-3.0.0.js"></script>
 	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/jquery-ui-1.12.1.js"></script>
+	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/sweetalert.v2.js"></script>
 	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/double-tap.js"></script>
-	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/modos_respuesta_nomovil.js"></script>';
+	<script type="text/javascript" src="'.PUERTO."://".HOST.'/js/modos_respuesta.js"></script>';
 //}
 ?>
 </body>

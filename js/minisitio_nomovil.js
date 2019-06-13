@@ -370,20 +370,28 @@ function emptyField(obj){
 }
 
 function crearMensajeError(obj, mensaje){	
-	if((obj[0] && obj[0].id == 'fecha_nacimiento') || obj.id == 'fecha_nacimiento'){	
-		$('#fecha_error').html(mensaje);
+	if((obj[0] && obj[0].id == 'fecha_nacimiento') || obj.id == 'fecha_nacimiento'){
+		$('#fecha_error').html("<p style='position: relative; bottom: 52px;'>"+mensaje+"</p>");
     	$('#fecha_error').addClass('error_field');
 	}else
 	if ((obj[0] && obj[0].id == 'profesion') || obj.id == 'profesion'){
-    $('#err_profesion').html(mensaje);
+    $('#err_profesion').html("<p style='position: relative; bottom: 52px;'>"+mensaje+"</p>");
     $('#err_profesion').addClass('error_field');
 	}
 	else if ((obj[0] && obj[0].id == 'ocupacion') || obj.id == 'ocupacion'){
-    $('#err_ocupacion').html(mensaje);
+    $('#err_ocupacion').html("<p style='position: relative; bottom: 52px;'>"+mensaje+"</p>");
     $('#err_ocupacion').addClass('error_field');
 	}
+	else if((obj[0] && obj[0].id == 'terminos_condiciones') || obj.id == 'terminos_condiciones'){
+		$('#terminos_condiciones').siblings('div').html("<p style='position: relative; bottom: 52px;'>"+mensaje+"</p>");
+    	$('#terminos_condiciones').siblings('div').addClass('error_field');
+    	$('#terminos_condiciones').siblings('div').css('top', '38px');
+    	// $('#terminos_condiciones').siblings('div').css('left', '35%');
+
+    	// top:36px; left:50%;
+	}
 	else{
-		$(obj).siblings('div').html(mensaje);
+		$(obj).siblings('div').html("<p style='position: relative; bottom: 52px;'>"+mensaje+"</p>");
 	  $(obj).siblings('div').addClass('error_field');
 	}	
 }
@@ -737,20 +745,6 @@ if($('#pre').length){
 		$('#gif_'+seleccion_value).attr('class', 'bounce');
 	});
 
-	$('#form_seleccion').on('submit', function(event){
-		if(validar_seleccion_form() <= 0){
-			mostrarerror('Por favor, seleccione una de las opciones.');
-			event.preventDefault();
-		}
-		else{
-			$('#error_msg').html('');
-		}
-	});
-
-	function validar_seleccion_form(){
-		var count = $('[name="seleccion"]:checked').length;
-		return count;
-	}
 
 	function crearInputRespuestasSeleccion(){
 		var contenedor_resp = $('#contenedor_resp');

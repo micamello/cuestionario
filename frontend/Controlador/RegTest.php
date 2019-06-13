@@ -2,7 +2,7 @@
 class Controlador_RegTest extends Controlador_Base {
   
   public function construirPagina(){   
-
+    
     if((isset($_SESSION['mensaje_exito']) && $_SESSION['mensaje_exito'] == '') || !isset($_SESSION['mensaje_exito'])){
       unset($_SESSION['id_usuario']);
     }
@@ -12,9 +12,6 @@ class Controlador_RegTest extends Controlador_Base {
     if(isset($_SESSION['questions'])){
       unset($_SESSION['questions']);
     }
-    //if(isset($_SESSION['metodo_seleccionado_vista'])){
-    //  unset($_SESSION['metodo_seleccionado_vista']);
-    //}
 
   	$opcion = Utils::getParam('opcion','',$this->data);
   	switch($opcion){
@@ -61,27 +58,25 @@ class Controlador_RegTest extends Controlador_Base {
         
       break;
       case 'gracias':
-        $this->gracias();
+        if(isset($_SESSION['id_usuario'])){
+          $rs1 = Modelo_Respuesta::facetaSiguiente($_SESSION['id_usuario']);
+          if($rs1 != 1 && $rs1 != false){
+            Utils::doRedirect(PUERTO.'://'.HOST.'/test/');
+          }
+          elseif($rs1 == 1){
+            Utils::doRedirect(PUERTO.'://'.HOST.'/metodo_seleccion/');
+            
+          }
+          elseif($rs1 == false){
+            Utils::doRedirect(PUERTO.'://'.HOST.'/gracias/');
+          }
+        }
+        else{
+          Utils::doRedirect(PUERTO.'://'.HOST);
+        }
       break;
       default:
         $this->mostrarDefault();
-      	/*$pais = Modelo_Pais::obtieneListado();
-      	$provincia = Modelo_Provincia::obtieneListado();
-        $escolaridad = Modelo_Escolaridad::obtieneListado();
-        $profesion = Modelo_ProfesionTest::obtenerListado();
-        $ocupacion = Modelo_Ocupacion::obtenerListado();
-        $empresas = Modelo_Usuario::obtieneListadoEmpresas();
-        $result = '';
-        if(isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] != 0){
-          $accion = 'Editar';
-          $result = Modelo_Usuario::buscaDatosUsuario($_SESSION['id_usuario']);
-          //$_SESSION['metodo_seleccionado_vista'] = 'forma_'.$result['metodo_resp'];
-        }
-        else{          
-          $accion = 'Guardar';
-        }
-
-        Vista::render('registrotest',array('pais'=>$pais, 'provincia'=>$provincia, 'escolaridad'=>$escolaridad, 'profesion'=>$profesion, 'ocupacion'=>$ocupacion,'accion'=>$accion, 'result'=>$result, 'empresas'=>$empresas), '', '');*/
       break;
     }  
 
@@ -120,11 +115,7 @@ class Controlador_RegTest extends Controlador_Base {
         }
                  
         $faceta = Modelo_Respuesta::facetaSiguiente($idUsuario);
-        //Utils::log("FACETA ".$faceta);
-        /*if (empty($faceta) && !empty($metodo_resp)){
-          $url = "gracias/";
-        }        
-        else*/if($faceta > 1){          
+        if($faceta > 1){          
           $_SESSION['metodo_seleccionado_vista'] = 'forma_'.$metodo_resp;
           $url = 'test/';
         }else{
@@ -157,17 +148,7 @@ class Controlador_RegTest extends Controlador_Base {
     if(Utils::es_correo_valido($data['correo']) == false){
       throw new Exception("La correo ingresado no es válido");
     }
-    // valida formato dinero
-   /* if(Utils::formatoDinero($data['aspiracion_salarial']) == false){
-      throw new Exception("La formato de dinero ingresado no es válido");
-    }*/
   }
-
-  /*public function guardarDatosUsuarioTest($data){    
-    if(!Modelo_Usuario::guardarUsuario($data)){
-      throw new Exception("Ha ocurrido un error, intente nuevamente");
-    }
-  }*/
 
   public function gracias(){
     unset($_SESSION['id_usuario']);

@@ -54,7 +54,7 @@ if($navegador == 'Safari'){
   <!-- <script type="text/javascript" src="jquery-1.11.0.min.js"></script> -->
   <!-- <script type="text/javascript" src="../src/DateTimePicker.js"></script> -->
 </head>
-<body class="window_class">
+<body class="" style="background-color: rgb(32, 68, 120);">
   <?php if($navegador == 'MSIE'){ ?>
   <div align="center" id="mensaje" style="height: 150px;background: #c36262;"><br>
     <h3>Usted esta usando internet explorer 8 o inferior</h3>
@@ -77,14 +77,17 @@ if($navegador == 'Safari'){
       </div>  
     <?php } ?>
   
-  <div class="col-md-12" style="text-align: center;"><img src="<?php echo PUERTO;?>://<?php echo HOST;?>/imagenes/logo.png" height="100"></div>
+  <div class="col-md-12" style="text-align: center;"><img src="<?php echo PUERTO;?>://<?php echo HOST;?>/imagenes/logo-blanco-04.png" height="120"><br><br></div>
   <!--<div class="container">-->
   <div class="col-md-8 offset-md-2">
-    <div class="card shadow-lg rounded text-center">
+    <div class="card shadow-lg rounded">
       <form action="<?php echo PUERTO."://".HOST;?>/registrodatostest/" method="POST" id="form_registrotest">
-        <div class="card-header bg-info text-white">
+        <!-- <div class="card-header bg-info text-white">
           Registro de datos 
-        </div>
+        </div> -->
+        <h2 class="titulo">
+          Registro de datos 
+        </h2>
         <div class="card-body">
           <input type="hidden" name="form_register" id="form_register" value="1">
           <div class="row">
@@ -364,7 +367,7 @@ if($navegador == 'Safari'){
               </div>
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-12 text-center">
               <div class="form-check">
                 <input autocomplete="on" type="checkbox" class="form-check-input" name="terminos_condiciones" id="terminos_condiciones" <?php if (isset($result['term_cond'])){ echo 'checked'; } ?> >
                 <label class="form-check-label" for="terminos_condiciones">Aceptar <a href="<?php echo PUERTO."://".HOST."/documentos/politicas.pdf";?>" target="_blank">políticas</a> para presentar y publicar el TEST</label><i class="asterisk_red">*</i>
@@ -380,8 +383,8 @@ if($navegador == 'Safari'){
 
         </div>
         <?php if($navegador != 'MSIE'){ ?>
-          <div class="card-footer bg-transparent text-muted">
-            <input type="submit" name="registro" id="registro" class="btn btn-success" value="<?php echo $accion; ?>">
+          <div class="card-footer bg-transparent text-muted text-center">
+            <input type="submit" name="registro" id="registro" class="btn-blue" value="<?php echo $accion; ?>">
           </div>
         <?php } ?>
       </form>

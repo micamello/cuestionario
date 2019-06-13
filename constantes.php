@@ -10,7 +10,7 @@ define('PUERTO', 'http');
 define('FRONTEND_RUTA', 'C:/wamp64/www/cuestionario/');
 define('DBSERVIDOR', 'localhost');
 define('DBUSUARIO', 'root'); 
-define('DBNOMBRE', 'cuestionarios');
+define('DBNOMBRE', 'cuestionario1');
 define('DBCLAVE', '');     
 define('RUTA_INCLUDES', FRONTEND_RUTA.'includes/');
 define('RUTA_FRONTEND', FRONTEND_RUTA.'frontend/'); 
@@ -58,9 +58,9 @@ define('VISIBILIDAD',1);
 
 // método de selección
 define('METODO_SELECCION', array('1'=>array(
-										'Esta opción le permitirá dar doble clip para seleccionar la respuesta, tome en cuenta que el 1  es la opción  con la que más se siente identificado y 5 la opción con la que menos se siente identificado.'
+										'Doble click para ordenar las respuestas.'
 									), '2'=>array(
-										'Esta opción le permitirá seleccionar y arrastrar la respuesta; tome en cuenta que la opción 1 es la opción con la que más se siente identificado y la opción 5 la opción con la que menos se siente identificado.', ''
+										'Seleccionar y arrastrar para ordenar las respuestas.'
 									)));
 
 // facebook

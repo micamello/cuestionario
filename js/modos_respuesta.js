@@ -160,6 +160,13 @@ if($('#forma_1').length){
 			var div_error = $(contenedores[i]).parent().prev().prev();
 				if(orden.length != opciones.length){
 					// console.log(div_error);
+					Swal.fire({                
+		                html: 'Por favor, ordene todas las opciones en la respectiva pregunta.',
+		                imageUrl: $('#puerto_host').val()+'/imagenes/wrong-04.png',
+		                imageWidth: 75,
+		                confirmButtonText: 'ACEPTAR',
+		                animation: true
+		              });
 					mostrarerror(div_error, "Por favor seleccione el orden correcto para cada opción");
 					event.preventDefault();
 				}
@@ -399,12 +406,19 @@ function makeDrop(drop, drag){
 			drag.appendTo(drop);
 			// padre_directo_drag.addClass('espacio');
 			crearInputsArastre();
-			toastr.remove();
+			// toastr.remove();
 		}
 		else{
-			toastr.remove();
-			toastr.options.positionClass = "toast-top-center";
-			toastr.warning('Ubique la opción en la pregunta correspondiente');
+			Swal.fire({                
+                html: 'Por favor, ubique la opción en la pregunta correspondiente.',
+                imageUrl: $('#puerto_host').val()+'/imagenes/wrong-04.png',
+                imageWidth: 75,
+                confirmButtonText: 'ACEPTAR',
+                animation: true
+              });
+			// toastr.remove();
+			// toastr.options.positionClass = "toast-top-center";
+			// toastr.warning('Ubique la opción en la pregunta correspondiente');
 			drag.css({top: '0px', left: '0px'});
 		}
 	}
@@ -434,7 +448,13 @@ function opinRightSide(){
 		destino_input = $(card[i]).find('.drop_destino').find('input[name="opcion[]"]');
 		if(destino.length != destino_input.length){
 			error.html('<div class="alert alert-danger" role="alert">Una o mas opciones de esta pregunta no estan ordenadas. (Ordenadas '+destino_input.length+' de '+destino.length+')</div>');
-
+			Swal.fire({                
+                html: 'Por favor, ordene todas las opciones en la respectiva pregunta.',
+                imageUrl: $('#puerto_host').val()+'/imagenes/wrong-04.png',
+                imageWidth: 75,
+                confirmButtonText: 'ACEPTAR',
+                animation: true
+              }); 
 		}
 		else{
 			error.html('');
@@ -478,4 +498,8 @@ function crearInputsArastre(){
 function validarErrores(){
 	var alerts = $('.alert-danger');
 	return alerts.length;
+}
+
+if($('#modal_recomendaciones').length){
+	$('#modal_recomendaciones').modal('show');
 }
