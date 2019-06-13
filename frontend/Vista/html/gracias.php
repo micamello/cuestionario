@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/all.css">
   <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/minisitio.css">
+  <link rel="icon" type="image/x-icon" href="<?php echo PUERTO."://".HOST;?>/imagenes/favicon.ico">
 </head>
 <body class="" style="background-color: rgb(32, 68, 120);">
   

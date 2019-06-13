@@ -37,6 +37,7 @@ $navegador = getBrowser($user_agent);
   <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/all.css">
 	  <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/minisitio.css">
 	  <link rel="stylesheet" href="<?php echo PUERTO."://".HOST;?>/css/sweetalert.v2.css">
+	  <link rel="icon" type="image/x-icon" href="<?php echo PUERTO."://".HOST;?>/imagenes/favicon.ico">
 
 
 
