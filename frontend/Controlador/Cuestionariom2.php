@@ -44,9 +44,6 @@ class Controlador_Cuestionariom2 extends Controlador_Base{
         
       break;
       case 'reg_var':
-      // print_r($_POST);
-      // exit();
-      //$_SESSION['id_usuario'] = ;
         if(!isset($_SESSION['id_faceta'])){
           $_SESSION['id_faceta'] = 1;
         }
