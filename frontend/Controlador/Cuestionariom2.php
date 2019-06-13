@@ -27,11 +27,10 @@ class Controlador_Cuestionariom2 extends Controlador_Base{
       case 'metodo_resp':
         if(isset($_SESSION['id_usuario'])){
           $rs1 = Modelo_Respuesta::facetaSiguiente($_SESSION['id_usuario']);
-          if($rs1 != 1 && $rs1 != false){
+          if($rs1 != 1 && $rs1 != false && !empty($_SESSION['metodo_seleccionado_vista'])){
             Utils::doRedirect(PUERTO.'://'.HOST.'/test/');
           }
           elseif($rs1 == 1){
-
             Vista::render('metodo_seleccion', METODO_SELECCION, '', '');
           }
           elseif($rs1 == false){
@@ -60,9 +59,12 @@ class Controlador_Cuestionariom2 extends Controlador_Base{
       if(!isset($_SESSION['id_usuario'])){
         Utils::doRedirect(PUERTO.'://'.HOST.'/gracias/');
       }
+      if(!isset($_SESSION['metodo_seleccionado_vista']) || empty($_SESSION['metodo_seleccionado_vista'])){
+        echo "yo";
+        Utils::doRedirect(PUERTO.'://'.HOST.'/metodo_seleccion/');
+      }
       $_SESSION['id_faceta'] = Modelo_Respuesta::facetaSiguiente($_SESSION['id_usuario']);
       self::renderscreen($_SESSION['id_faceta'], $_SESSION['metodo_seleccionado_vista']);
-
       break;
     }         
   }

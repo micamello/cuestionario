@@ -37,6 +37,9 @@ class Controlador_RegTest extends Controlador_Base {
         if($datodni['id_usuario'] != ''){
           $_SESSION['id_usuario'] = $datodni['id_usuario'];
           $_SESSION['mensaje_exito'] = 'puede editar';
+          if(!empty($datodni['metodo_resp'])){
+            $_SESSION['metodo_seleccionado_vista'] = 'forma_'.$datodni['metodo_resp'];
+          }
         }else{
           unset( $_SESSION['id_usuario']);
           unset($_SESSION['mensaje_exito'] );
@@ -64,11 +67,10 @@ class Controlador_RegTest extends Controlador_Base {
             Utils::doRedirect(PUERTO.'://'.HOST.'/test/');
           }
           elseif($rs1 == 1){
-            Utils::doRedirect(PUERTO.'://'.HOST.'/metodo_seleccion/');
-            
+            Utils::doRedirect(PUERTO.'://'.HOST.'/metodo_seleccion/');         
           }
           elseif($rs1 == false){
-            Utils::doRedirect(PUERTO.'://'.HOST.'/gracias/');
+            $this->gracias();
           }
         }
         else{
