@@ -146,27 +146,27 @@ $navegador = getBrowser($user_agent);
 	         	<h2 class="titulo1">¿Qué es CANEA?</h2>
 	        </div>
         <div class="col-md-12">
-	    	<p class="qs-text">CANEA está basado en la teoría de los “5 GRANDES RASGOS DE PERSONALIDAD”, teoría que ha tenido validez y ha sido muy utilizada en diversas investigaciones en el área organizacional a nivel mundial. Para efectos prácticos CANEA se ha definido de la siguiente manera: </p>
+	    	<p class="qs-text">Canea es un test basado en la teoria de los <b>"5 GRANDES RASGOS DE PERSONALIDAD"</b> y ha sido muy utilizada en diversas investigaciones para el &aacute;rea organizacional a nivel mundial.</p>
 	    	<div class="row">
 	    		<div class="col-md-2 offset-md-1 col-xs-2 offset-xs-1 col-sm-2 offset-sm-1 minscreen">
 	    			<div class="canea-text-modal">C</div>
-					<div class="texto-canea "><h4 class="d-none d-lg-block">Hacer</h4></div>
+					<div><h4 class="d-none d-lg-block texto-canea">Hacer</h4></div>
 	    		</div>
 	    		<div class="col-md-2 col-xs-2 col-sm-2 minscreen">
 	    			<div class="canea-text-modal">A</div>
-					<div class="texto-canea" align="center"><h4 class="d-none d-lg-block">Relaciones Interpersonales</h4></div>
+					<div align="center"><h4 class="d-none d-lg-block texto-canea">Relaciones Interpersonales</h4></div>
 	    		</div>
 	    		<div class="col-md-2 col-xs-2 col-sm-2 minscreen">
 	    			<div class="canea-text-modal">N</div>
-					<div class="texto-canea "><h4 class="d-none d-lg-block">Estabilidad Emocional</h4></div>
+					<div><h4 class="d-none d-lg-block texto-canea">Inteligencia Emocional</h4></div>
 	    		</div>
 	    		<div class="col-md-2 col-xs-2 col-sm-2 minscreen">
 	    			<div class="canea-text-modal">E</div>
-					<div class="texto-canea "><h4 class="d-none d-lg-block">Asertividad</h4></div>
+					<div><h4 class="d-none d-lg-block texto-canea">Asertividad/<br>Comunicación</h4></div>
 	    		</div>
 	    		<div class="col-md-2 col-xs-2 col-sm-2 minscreen">
 	    			<div class="canea-text-modal">A</div>
-					<div id="prueba-e" class="texto-canea "><h4 class="d-none d-lg-block">Pensar</h4></div>
+					<div id="prueba-e"><h4 class="d-none d-lg-block texto-canea">Pensar</h4></div>
 	    		</div>
 	    	</div>
 	    	<div class="text-center">

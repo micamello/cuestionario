@@ -415,7 +415,7 @@ label{
     font-size: 16px;
     line-height: 24px;
     text-align: center;
-    padding: 15px;
+    padding: 18px;
     font-family: ‘Roboto’;
     
 }
@@ -448,7 +448,7 @@ label{
     text-align: center;
     font-family: ‘Antipasto’;
     text-transform: uppercase;
-
+    font-size: 14pt !important;
     color: #204478;
     margin-bottom: 30px;
 }
