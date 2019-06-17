@@ -1334,3 +1334,8 @@ function reemplazar(texto){
 					replace(/Oacute;/g, 'Ó').
 					replace(/Uacute;/g, 'Ú')
 }
+
+// $('.dropdown-menu').css('margin-bottom', '0px');
+$('ul.dropdown-menu').on('scroll', function(){
+	console.log("eder");
+})
