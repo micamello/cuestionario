@@ -839,3 +839,5 @@ function reemplazar(texto){
 		var count = $('[name="seleccion"]:checked').length;
 		return count;
 	}
+
+$('.dropdown-menu').css('margin-bottom', '0px');
